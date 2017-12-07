@@ -1,0 +1,7 @@
+---
+timekeeper::package_name: [ 'timekeeper' ]
+timekeeper::package_ensure: present
+timekeeper::config_file: /etc/timekeeper.conf
+timekeeper::service_name: timekeeper
+timekeeper::service_ensure: running
+timekeeper::service_enable: true

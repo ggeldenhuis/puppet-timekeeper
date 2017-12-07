@@ -1,0 +1,21 @@
+# Global settings
+<% if $timekeeper::serventp != undef { -%>
+SERVENTP='<%= $timekeeper::serventp %>'
+<% } -%>
+<%# ------- Seperator ------- -%>
+<% if $timekeeper::enable_ntp_followup != undef { -%>
+ENABLE_NTP_FOLLOWUP='<%= $timekeeper::enable_ntp_followup %>'
+<% } -%>
+<%# ------- Seperator ------- -%>
+<% if $timekeeper::serventp_iface != undef { -%>
+SERVENTP_IFACE='<%= $timekeeper::serventp_iface %>'
+<% } -%>
+<%# ------- Seperator ------- -%>
+<% if $timekeeper::serventp_ntpkeyids != undef { -%>
+SERVENTP_NTPKEYIDS='<%= $timekeeper::serventp_ntpkeyids.join(',') -%>'
+<% } -%>
+<%# ------- Seperator ------- -%>
+<% if $timekeeper::ntpsyncerrorthreshold != undef { -%>
+NTPSYNCERRORTHRESHOLD='<%= $timekeeper::ntpsyncerrorthreshold -%>'
+<% } -%>
+<%# ------- Seperator ------- -%>

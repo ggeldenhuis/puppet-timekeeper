@@ -1,0 +1,20 @@
+<%- | String  $ntpserver,
+      Integer $priority,
+      String  $lowquality,
+      String  $enable_reresolve,
+      String  $enable_detect_asymmetry,
+      String  $enable_hwstamps,
+      String  $monitoronly,
+| -%>
+SOURCE<%= $priority -%> () {
+#  SYNCERRORTHRESHOLD='0.001';
+#  LOWQUALITY='1';
+#  ENABLE_RERESOLVE='1';
+#  CABLEDELAY='0.1';
+#  ENABLE_DETECT_ASYMMETRY='1';
+  NTPSERVER='<%= $ntpserver -%>';
+#  NTPSYNCRATE='0.8';
+#  NTPKEYID='2342';
+#  MAJORTIME='0';
+#  ENABLE_HWTSTAMPS='1';
+#  MONITORONLY='1'; }
