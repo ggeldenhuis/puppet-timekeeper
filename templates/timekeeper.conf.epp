@@ -19,3 +19,9 @@ SERVENTP_NTPKEYIDS='<%= $timekeeper::serventp_ntpkeyids.join(',') -%>'
 NTPSYNCERRORTHRESHOLD='<%= $timekeeper::ntpsyncerrorthreshold -%>'
 <% } -%>
 <%# ------- Seperator ------- -%>
+
+<% if $timekeeper::enable_webmanagement == '1' { -%>
+# Web Management Settings
+ENABLE_WEB_MANAGEMENT='<%= $timekeeper::enable_webmanagement -%>';
+WEB_MANAGEMENT_PORT='<%= $timekeeper::webmanagementport -%>';
+<% } %>

@@ -5,16 +5,34 @@
       String  $enable_detect_asymmetry,
       String  $enable_hwstamps,
       String  $monitoronly,
+      Optional[Float]   $syncerrorthreshold,
+      Optional[Float]   $cabledelay,
+      Optional[Float]   $ntpsyncrate,
+      Optional[String]  $ntpkeyid,
+      Optional[Integer] $majortime,
 | -%>
+<%# This template creates the config for readability, the web UI for    -%>
+<%# timekeeper places all config on one line, but is able to parse this -%>
+<%# config. It will write it back to one line though. -%>
 SOURCE<%= $priority -%> () {
-#  SYNCERRORTHRESHOLD='0.001';
-#  LOWQUALITY='1';
-#  ENABLE_RERESOLVE='1';
-#  CABLEDELAY='0.1';
-#  ENABLE_DETECT_ASYMMETRY='1';
   NTPSERVER='<%= $ntpserver -%>';
-#  NTPSYNCRATE='0.8';
-#  NTPKEYID='2342';
-#  MAJORTIME='0';
-#  ENABLE_HWTSTAMPS='1';
-#  MONITORONLY='1'; }
+  LOWQUALITY='<%= $lowquality -%>';
+  ENABLE_RERESOLVE='<%= $enable_reresolve -%>';
+  ENABLE_DETECT_ASYMMETRY='<%= $enable_detect_asymmetry -%>';
+  ENABLE_HWTSTAMPS='<%= $enable_hwstamps -%>';
+  MONITORONLY='<%= $monitoronly -%>';
+<% if $syncerrorthreshold != undef { -%>
+  SYNCERRORTHRESHOLD='<%= $syncerrorthreshold-%>';
+<% } -%>
+<% if $cabledelay != undef { -%>
+  CABLEDELAY='<%= $cabledelay -%>';
+<% } -%>
+<% if $ntpsyncrate != undef { -%>
+  NTPSYNCRATE='<%= $ntpsyncrate -%>';
+<% } -%>
+<% if $ntpkeyid != undef { -%>
+  NTPKEYID='<%= $ntpkeyid -%>';
+<% } -%>
+<% if $majortime != undef { -%>
+  MAJORTIME='<%= $majortime -%>';
+<% } -%>

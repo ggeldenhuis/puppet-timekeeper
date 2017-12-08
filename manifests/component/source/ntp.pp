@@ -9,11 +9,12 @@
 define timekeeper::component::source::ntp(
   String            $ntpserver,
   Integer           $priority,
-  Enum['1','1']     $lowquality = '0',              # Set by default in Web UI
+  Enum['0','1']     $lowquality = '0',              # Set by default in Web UI
   Enum['0','1']     $enable_reresolve = '0',        # Set by default in Web UI
   Enum['0','1']     $enable_detect_asymmetry = '0', # Set by default in Web UI
   Enum['0','1']     $enable_hwstamps = '1',         # Set by default in Web UI
   Enum['0','1']     $monitoronly = '0',             # Set by default in Web UI
+  Optional[Float]   $myfloat = undef,
   Optional[Float]   $syncerrorthreshold = undef,
   Optional[Float]   $cabledelay = undef,
   Optional[Float]   $ntpsyncrate = undef,
@@ -32,6 +33,11 @@ define timekeeper::component::source::ntp(
       'enable_detect_asymmetry' => $enable_detect_asymmetry,
       'enable_hwstamps'         => $enable_hwstamps,
       'monitoronly'             => $monitoronly,
+      'syncerrorthreshold'      => $syncerrorthreshold,
+      'cabledelay'              => $cabledelay,
+      'ntpsyncrate'             => $ntpsyncrate,
+      'ntpkeyid'                => $ntpkeyid,
+      'majortime'               => $majortime,
     }),
     order   => $priority,
   }

@@ -10,9 +10,5 @@ class timekeeper::config {
   concat { $timekeeper::config_file: }
 
   include timekeeper::config::global
-
-#  file { $timekeeper::config_file:
-#    ensure => file,
-#    content => epp('timekeeper/timekeeper.conf.epp'),
-#  }
+  include timekeeper::config::sources_ntp
 }

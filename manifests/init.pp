@@ -25,6 +25,13 @@ class timekeeper (
   Optional[String] $serventp_iface = undef,
   Optional[Array] $serventp_ntpkeyids = undef,
   Optional[Float] $ntpsyncerrorthreshold = undef,
+  Optional[Enum['0,','1']] $enable_webmanagement = undef,
+  Optional[Integer] $webmanagementport = 8080,
+  Optional[Hash] $sources_ntp = {},
+  Optional[Hash] $sources_ptp = {},
+  Optional[Hash] $sources_pps = {},
+  Optional[Hash] $sources_pps_card = {},
+  Optional[Hash] $servers_ptp = {},
 ){
   # Contains the classes to ensure correct behaviour for external ordering
   # dependencies against the class.
@@ -36,7 +43,10 @@ class timekeeper (
   Class['timekeeper::install'] ->
   Class['timekeeper::config'] ~>
   Class['timekeeper::service']
+
 }
 
 # TODO
 ## Add concat as dependency
+## Add stdlib as dependency
+## Add ipaddress as datatype
