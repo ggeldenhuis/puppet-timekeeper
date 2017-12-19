@@ -1,0 +1,37 @@
+<%- |  Boolean           $tkpps,
+       Integer           $priority,
+       Boolean           $ppsout,
+       Boolean           $monitoronly,
+       Optional[Float]   $syncerrorthreshold,
+       Optional[Float]   $cabledelay,
+       Optional[Integer] $holdover_limit,
+       Optional[String]  $iface,
+       Optional[Integer] $pin,
+       Optional[Integer] $majortime,
+| -%>
+<%# This template creates the config for readability, the web UI for    -%>
+<%# timekeeper places all config on one line, but is able to parse this -%>
+<%# config. The web config will write it back to one line though. -%>
+SOURCE<%= $priority -%> () {
+  PPSOUT='<%= Numeric($ppsout)-%>';
+  TKPPS='<%= Numeric($tkpps)-%>';
+  MONITORONLY='<%= Numeric($monitoronly)-%>';
+<% if $syncerrorthreshold != undef { -%>
+  SYNCERRORTHRESHOLD='<%= $syncerrorthreshold -%>';
+<% } -%>
+<% if $cabledelay != undef { -%>
+  CABLEDELAY='<%= $cabledelay -%>';
+<% } -%>
+<% if $holdover_limit != undef { -%>
+  HOLDOVER_LIMIT='<%= $holdover_limit -%>';
+<% } -%>
+<% if $iface != undef { -%>
+  IFACE='<%= $iface -%>';
+<% } -%>
+<% if $pin != undef { -%>
+  PIN='<%= $pin -%>';
+<% } -%>
+<% if $majortime != undef { -%>
+  MAJORTIME='<%= $majortime -%>';
+<% } -%>
+}

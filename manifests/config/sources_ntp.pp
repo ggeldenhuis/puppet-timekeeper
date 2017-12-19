@@ -7,8 +7,8 @@
 # @example
 #   include timekeeper::config::sources_ntp
 class timekeeper::config::sources_ntp {
-  $timekeeper::sources_ntp.each | $priority, $source_data| {
-    timekeeper::component::source::ntp { $priority:
+  $timekeeper::sources_ntp.each | $name, $source_data| {
+    timekeeper::component::source::ntp { $name:
       * => {} + $source_data
     }
   }

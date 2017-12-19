@@ -1,0 +1,59 @@
+<%- | String                         $ppsdev,
+      Integer                        $priority,
+      Boolean                        $lowquality,
+      Boolean                        $disable_gps,
+      Boolean                        $tkgps,
+      Boolean                        $tkjs,
+      Boolean                        $hoptroff,
+      Boolean                        $ublox,
+      Boolean                        $gnss_gps,
+      Boolean                        $gnss_galileo,
+      Boolean                        $gnss_beidou,
+      Boolean                        $gnss_glonass,
+      Boolean                        $monitoronly,
+      Optional[Float]                $syncerrorthreshold,
+      Optional[Float]                $cabledelay,
+      Optional[String]               $ppssource,
+      Optional[Timekeeper::Baudrate] $baud,
+      Optional[Integer]              $holdover_limit,
+      Optional[String]               $iface,
+      Optional[Integer]              $majortime,
+| -%>
+<%# This template creates the config for readability, the web UI for    -%>
+<%# timekeeper places all config on one line, but is able to parse this -%>
+<%# config. The web config will write it back to one line though. -%>
+SOURCE<%= $priority -%> () {
+<% if $syncerrorthreshold != undef { -%>
+  SYNCERRORTHRESHOLD='<%= $syncerrorthreshold-%>';
+<% } -%>
+  LOWQUALITY='<%= Numeric($lowquality) -%>';
+  DISABLE_GPS='<%= Numeric($disable_gps) -%>';
+<% if $cabledelay != undef { -%>
+  CABLEDELAY='<%= $cabledelay -%>';
+<% } -%>
+<% if $ppssource != undef { -%>
+  PPSSOURCE='<%= $ppssource -%>';
+<% } -%>
+<% if $baud != undef { -%>
+  BAUD='<%= $baud -%>';
+<% } -%>
+<% if $holdover_limit != undef { -%>
+  HOLDOVER_LIMIT='<%= $holdover_limit -%>';
+<% } -%>
+<% if $iface != undef { -%>
+  IFACE='<%= $iface -%>';
+<% } -%>
+<% if $majortime != undef { -%>
+  MAJORTIME='<%= $majortime -%>';
+<% } -%>
+  PPSDEV='<%= $ppsdev -%>';
+  TKGPS='<%= Numeric($tkgps) -%>';
+  TKJS='<%= Numeric($tkjs) -%>';
+  HOPTROFF='<%= Numeric($hoptroff) -%>';
+  UBLOX='<%= Numeric($ublox) -%>';
+  GNSS_GPS='<%= Numeric($gnss_gps) -%>';
+  GNSS_GALILEO='<%= Numeric($gnss_galileo) -%>';
+  GNSS_BEIDOU='<%= Numeric($gnss_beidou) -%>';
+  GNSS_GLONASS='<%= Numeric($gnss_glonass) -%>';
+  MONITORONLY='<%= Numeric($monitoronly) -%>';
+}

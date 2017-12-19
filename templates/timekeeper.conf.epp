@@ -1,10 +1,10 @@
 # Global settings
 <% if $timekeeper::serventp != undef { -%>
-SERVENTP='<%= $timekeeper::serventp %>'
+SERVENTP='<%= Numeric($timekeeper::serventp) %>'
 <% } -%>
 <%# ------- Seperator ------- -%>
 <% if $timekeeper::enable_ntp_followup != undef { -%>
-ENABLE_NTP_FOLLOWUP='<%= $timekeeper::enable_ntp_followup %>'
+ENABLE_NTP_FOLLOWUP='<%= Numeric($timekeeper::enable_ntp_followup) %>'
 <% } -%>
 <%# ------- Seperator ------- -%>
 <% if $timekeeper::serventp_iface != undef { -%>
@@ -20,8 +20,8 @@ NTPSYNCERRORTHRESHOLD='<%= $timekeeper::ntpsyncerrorthreshold -%>'
 <% } -%>
 <%# ------- Seperator ------- -%>
 
-<% if $timekeeper::enable_webmanagement == '1' { -%>
+<% if $timekeeper::enable_webmanagement { -%>
 # Web Management Settings
-ENABLE_WEB_MANAGEMENT='<%= $timekeeper::enable_webmanagement -%>';
+ENABLE_WEB_MANAGEMENT='1';
 WEB_MANAGEMENT_PORT='<%= $timekeeper::webmanagementport -%>';
 <% } %>

@@ -1,0 +1,55 @@
+<%- | Integer           $priority,
+      Boolean           $lowquality,
+      Boolean           $enable_correction,
+      Boolean           $allow_dropped_followup,
+      Boolean           $enable_detect_asymmetry,
+      Integer           $ptpdomain,
+      Integer           $ptpclientversion,
+      Integer           $unicast,
+      Boolean           $enable_hwtstamps,
+      Boolean           $monitoronly,
+      Boolean           $allow_unreasonable_utc,
+      Optional[Float]   $syncerrorthreshold,
+      Optional[Float]   $cabledelay,
+      Optional[String]  $iface,
+      Optional[Integer] $majortime,
+      Optional[String]  $ptpserver,
+      Optional[Integer] $ttl,
+      Optional[Integer] $iptos,
+| -%>
+<%# This template creates the config for readability, the web UI for    -%>
+<%# timekeeper places all config on one line, but is able to parse this -%>
+<%# config. The web confi will write it back to one line though. -%>
+SOURCE<%= $priority -%> () {
+  LOWQUALITY='<%= Numeric($lowquality) -%>';
+<% if $syncerrorthreshold != undef { -%>
+  SYNCERRORTHRESHOLD='<%= $syncerrorthreshold -%>';
+<% } -%>
+  ENABLE_CORRECTION='<%= Numeric($enable_correction) -%>';
+  ALLOW_DROPPED_FOLLOWUP='<%= Numeric($allow_dropped_followup) -%>';
+<% if $cabledelay != undef { -%>
+  CABLEDELAY='<%= $cabledelay -%>';
+<% } -%>
+  ENABLE_DETECT_ASYMMETRY='<%= Numeric($enable_detect_asymmetry) -%>';
+  PTPDOMAIN='<%= $ptpdomain -%>';
+<% if $iface != undef { -%>
+  IFACE='<%= $iface -%>';
+<% } -%>
+<% if $majortime != undef { -%>
+  MAJORTIME='<%= $majortime -%>';
+<% } -%>
+  PTPCLIENTVERSION='<%= $ptpclientversion -%>';
+  UNICAST='<%= $unicast -%>';
+<% if $ptpserver != undef { -%>
+  PTPSERVER='<%= $ptpserver -%>';
+<% } -%>
+<% if $ttl != undef { -%>
+  TTL='<%= $ttl -%>';
+<% } -%>
+  ENABLE_HWTSTAMPS='<%= Numeric($enable_hwtstamps) -%>';
+  MONITORONLY='<%= Numeric($monitoronly) -%>';
+<% if $iptos != undef { -%>
+  IPTOS='<%= $iptos -%>';
+<% } -%>
+  ALLOW_UNREASONABLE_UTC='<%= Numeric($allow_unreasonable_utc) -%>';
+}

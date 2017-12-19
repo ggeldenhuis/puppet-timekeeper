@@ -7,19 +7,19 @@
 # @example
 #   timekeeper::component::source::ntp { 'namevar': }
 define timekeeper::component::source::ntp(
-  String            $ntpserver,
-  Integer           $priority,
-  Enum['0','1']     $lowquality = '0',              # Set by default in Web UI
-  Enum['0','1']     $enable_reresolve = '0',        # Set by default in Web UI
-  Enum['0','1']     $enable_detect_asymmetry = '0', # Set by default in Web UI
-  Enum['0','1']     $enable_hwstamps = '1',         # Set by default in Web UI
-  Enum['0','1']     $monitoronly = '0',             # Set by default in Web UI
-  Optional[Float]   $myfloat = undef,
-  Optional[Float]   $syncerrorthreshold = undef,
-  Optional[Float]   $cabledelay = undef,
-  Optional[Float]   $ntpsyncrate = undef,
-  Optional[String]  $ntpkeyid = undef,
-  Optional[Integer] $majortime = undef,
+  String               $ntpserver,
+  Integer              $priority,
+  Boolean              $lowquality = false,              # Set by default in Web UI
+  Boolean              $enable_reresolve = false,        # Set by default in Web UI
+  Boolean              $enable_detect_asymmetry = false, # Set by default in Web UI
+  Boolean              $enable_hwtstamps = true,         # Set by default in Web UI
+  Boolean              $monitoronly = false,             # Set by default in Web UI
+  Optional[Float]      $myfloat = undef,
+  Optional[Float]      $syncerrorthreshold = undef,
+  Optional[Float]      $cabledelay = undef,
+  Optional[Float]      $ntpsyncrate = undef,
+  Optional[String]     $ntpkeyid = undef,
+  Optional[Integer[1]] $majortime = undef,
 ) {
   include timekeeper
   concat::fragment { "timekeeper::component::source::ntp::${priority}":
@@ -31,7 +31,7 @@ define timekeeper::component::source::ntp(
       'lowquality'              => $lowquality,
       'enable_reresolve'        => $enable_reresolve,
       'enable_detect_asymmetry' => $enable_detect_asymmetry,
-      'enable_hwstamps'         => $enable_hwstamps,
+      'enable_hwtstamps'        => $enable_hwtstamps,
       'monitoronly'             => $monitoronly,
       'syncerrorthreshold'      => $syncerrorthreshold,
       'cabledelay'              => $cabledelay,
@@ -39,6 +39,6 @@ define timekeeper::component::source::ntp(
       'ntpkeyid'                => $ntpkeyid,
       'majortime'               => $majortime,
     }),
-    order   => $priority,
+    order   => $priority + 100, # Ensure 10 is sorted after 9
   }
 }

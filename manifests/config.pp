@@ -11,4 +11,7 @@ class timekeeper::config {
 
   include timekeeper::config::global
   include timekeeper::config::sources_ntp
+  include timekeeper::config::sources_ptp
+  include timekeeper::config::sources_pps_bus
+  include timekeeper::config::sources_pps_card
 }

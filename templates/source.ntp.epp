@@ -1,10 +1,10 @@
-<%- | String  $ntpserver,
-      Integer $priority,
-      String  $lowquality,
-      String  $enable_reresolve,
-      String  $enable_detect_asymmetry,
-      String  $enable_hwstamps,
-      String  $monitoronly,
+<%- | String            $ntpserver,
+      Integer           $priority,
+      Boolean           $lowquality,
+      Boolean           $enable_reresolve,
+      Boolean           $enable_detect_asymmetry,
+      Boolean           $enable_hwtstamps,
+      Boolean           $monitoronly,
       Optional[Float]   $syncerrorthreshold,
       Optional[Float]   $cabledelay,
       Optional[Float]   $ntpsyncrate,
@@ -13,14 +13,14 @@
 | -%>
 <%# This template creates the config for readability, the web UI for    -%>
 <%# timekeeper places all config on one line, but is able to parse this -%>
-<%# config. It will write it back to one line though. -%>
+<%# config. The web config will write it back to one line though. -%>
 SOURCE<%= $priority -%> () {
   NTPSERVER='<%= $ntpserver -%>';
-  LOWQUALITY='<%= $lowquality -%>';
-  ENABLE_RERESOLVE='<%= $enable_reresolve -%>';
-  ENABLE_DETECT_ASYMMETRY='<%= $enable_detect_asymmetry -%>';
-  ENABLE_HWTSTAMPS='<%= $enable_hwstamps -%>';
-  MONITORONLY='<%= $monitoronly -%>';
+  LOWQUALITY='<%= Numeric($lowquality) -%>';
+  ENABLE_RERESOLVE='<%= Numeric($enable_reresolve) -%>';
+  ENABLE_DETECT_ASYMMETRY='<%= Numeric($enable_detect_asymmetry) -%>';
+  ENABLE_HWTSTAMPS='<%= Numeric($enable_hwtstamps) -%>';
+  MONITORONLY='<%= Numeric($monitoronly) -%>';
 <% if $syncerrorthreshold != undef { -%>
   SYNCERRORTHRESHOLD='<%= $syncerrorthreshold-%>';
 <% } -%>
@@ -36,3 +36,4 @@ SOURCE<%= $priority -%> () {
 <% if $majortime != undef { -%>
   MAJORTIME='<%= $majortime -%>';
 <% } -%>
+}
