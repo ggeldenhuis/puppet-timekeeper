@@ -45,21 +45,3 @@ define timekeeper::component::source::pps_card(
     order   => $priority + 100, # Ensure 10 is sorted after 9
   }
 }
-
-#SOURCE13 () {
-#  PPSOUT='0';
-#  TKPPS='1';
-#  MONITORONLY='0';
-#}
-
-#SOURCE14 () {
-#  SYNCERRORTHRESHOLD='0.009';
-#  CABLEDELAY='0.008';
-#  HOLDOVER_LIMIT='5';
-#  IFACE='ens33';
-#  PIN='2';
-#  PPSOUT='1';
-#  MAJORTIME='9';
-#  TKPPS='1'; # Must always be 1.
-#  MONITORONLY='1';
-#}

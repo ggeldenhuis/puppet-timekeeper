@@ -1,27 +1,156 @@
-# Global settings
+# Time serving options
 <% if $timekeeper::serventp != undef { -%>
 SERVENTP='<%= Numeric($timekeeper::serventp) %>'
 <% } -%>
-<%# ------- Seperator ------- -%>
 <% if $timekeeper::enable_ntp_followup != undef { -%>
 ENABLE_NTP_FOLLOWUP='<%= Numeric($timekeeper::enable_ntp_followup) %>'
 <% } -%>
-<%# ------- Seperator ------- -%>
 <% if $timekeeper::serventp_iface != undef { -%>
 SERVENTP_IFACE='<%= $timekeeper::serventp_iface %>'
 <% } -%>
-<%# ------- Seperator ------- -%>
 <% if $timekeeper::serventp_ntpkeyids != undef { -%>
 SERVENTP_NTPKEYIDS='<%= $timekeeper::serventp_ntpkeyids.join(',') -%>'
 <% } -%>
-<%# ------- Seperator ------- -%>
 <% if $timekeeper::ntpsyncerrorthreshold != undef { -%>
-NTPSYNCERRORTHRESHOLD='<%= $timekeeper::ntpsyncerrorthreshold -%>'
+NTPSYNCERRORTHRESHOLD='<%= String($timekeeper::ntpsyncerrorthreshold,'%#.6f') -%>'
 <% } -%>
-<%# ------- Seperator ------- -%>
+<% if $timekeeper::servetime != undef { -%>
+SERVETIME='<%= $timekeeper::servetime -%>';
+<% } -%>
+<% if $timekeeper::initial_serve_accuracy  != undef { -%>
+INITIAL_SERVE_ACCURACY='<%= String($timekeeper::initial_serve_accuracy,'%#.6f') -%>';
+<% } -%>
 
+# Management/Monitoring Settings
+<% if $timekeeper::enable_map != undef { -%>
+ENABLE_MAP='<%= Numeric($timekeeper::enable_map) -%>';
+<% } -%>
+<% if $timekeeper::enable_managment_query != undef { -%>
+ENABLE_MANAGEMENT_QUERY='Numeric($timekeeper::enable_managment_query) -%>';
+<% } -%>
+<% if $timekeeper::enable_managment_response != undef { -%>
+ENABLE_MANAGEMENT_RESPONSE='Numeric($timekeeper::enable_management_response) -%>';
+<% } -%>
+<% if $timekeeper::management_query_interval != undef { -%>
+MANAGEMENT_QUERY_INTERVAL='<%= $timekeeper::management_query_interval -%>';
+<% } -%>
+<% if $timekeeper::sync_error_threshold_throttle != undef { -%>
+SYNC_ERROR_THRESHOLD_THROTTLE='<%= $timekeeper::sync_error_threshold_throttle -%>';
+<% } -%>
 <% if $timekeeper::enable_webmanagement { -%>
 # Web Management Settings
 ENABLE_WEB_MANAGEMENT='1';
 WEB_MANAGEMENT_PORT='<%= $timekeeper::webmanagementport -%>';
+<% } -%>
+<% if $timekeeper::web_management_ip != undef { -%>
+WEB_MANAGEMENT_IP='<%= $timekeeper::web_management_ip -%>';
 <% } %>
+
+# General Timekeeper Settings
+<% if $timekeeper::enable_satellitedata != undef { -%>
+ENABLE_SATELLITEDATA='0';
+<% } -%>
+ENABLE_TKGPS_DETAIL='0';
+<% if $timekeeper::avoid_ifaces != undef { -%>
+AVOID_IFACES='<%= $timekeeper::avoid_ifaces.join(',') -%>';
+<% } -%>
+<% if $timekeeper::set_time_on_startup != undef { -%>
+SET_TIME_ON_STARTUP='<%= Numeric($timekeeper::set_time_on_startup) -%>';
+<% } -%>
+<% if $timekeeper::allow_set_time_after_startup != undef { -%>
+ALLOW_SET_TIME_AFTER_STARTUP='<%= Numeric($timekeeper::allow_set_time_after_startup) -%>';
+<% } -%>
+<% if $timekeeper::step_on_leapsecond != undef { -%>
+STEP_ON_LEAPSECOND='<%= Numeric($timekeeper::step_on_leapsecond) -%>';
+<% } -%>
+<% if $timekeeper::sourcecheck != undef { -%>
+SOURCECHECK='<%= Numeric($timekeeper::sourcecheck) -%>';
+<% } -%>
+<% if $timekeeper::sourcecheck_autovalidate_threshold != undef { -%>
+SOURCECHECK_AUTOVALIDATE_THRESHOLD='<%= $timekeeper::sourcecheck_autovalidate_threshold -%>';
+<% } -%>
+<% if $timekeeper::cpu != undef { -%>
+CPU='<%= $timekeeper::cpu -%>';
+<% } -%>
+<% if $timekeeper::enable_sfc_uuid_filter != undef { -%>
+ENABLE_SFC_UUID_FILTER='<%= Numeric($timekeeper::enable_sfc_uuid_filter) -%>';
+<% } -%>
+<% if $timekeeper::logdir != undef { -%>
+LOGDIR='<%= $timekeeper::logdir -%>';
+<% } -%>
+<% if $timekeeper::donotrotatelogsonstartup != undef { -%>
+DONOTROTATELOGSONSTARTUP='<%= Numeric($timekeeper::donotrotatelogsonstartup) -%>';
+<% } -%>
+<% if $timekeeper::iptos != undef { -%>
+IPTOS='<%= $timekeeper::iptos -%>';
+<% } -%>
+<% if $timekeeper::enable_compliance != undef { -%>
+ENABLE_COMPLIANCE='<%= Numeric($timekeeper::enable_compliance) -%>';
+<% } -%>
+<% if $timekeeper::enable_hwstamps != undef { -%>
+ENABLE_HWTSTAMPS='<%= Numeric($timekeeper::enable_hwstamps) -%>';
+<% } -%>
+
+# External alerting/notification
+<% if $timekeeper::snmptraphost != undef { -%>
+SNMPTRAPHOST='<%= $timekeeper::snmptraphost.join(',') -%>';
+<% } -%>
+<% if $timekeeper::snmptrapid != undef { -%>
+SNMPTRAPEID='<%= $timekeeper::snmptrapid -%>';
+<% } -%>
+<% if $timekeeper::snmptrapusername != undef { -%>
+SNMPTRAPUSERNAME='<%= $timekeeper::snmptrapusername -%>';
+<% } -%>
+<% if $timekeeper::snmptrappassphrase != undef { -%>
+SNMPTRAPPASSPHRASE='<%= $timekeeper::snmptrappassphrase -%>';
+<% } -%>
+<% if $timekeeper::snmptrapoid != undef { -%>
+SNMPTRAPOID='<%= $timekeeper::snmptrapoid -%>';
+<% } -%>
+<% if $timekeeper::emailnotification != undef { -%>
+EMAILNOTIFICATION='<%= $timekeeper.emailnotification.join(',') -%>';
+<% } -%>
+<% if $timekeeper::emailnotification_throttle != undef { -%>
+EMAILNOTIFICATION_THROTTLE='<%= $timekeeper::emailnotification_throttle -%>';
+<% } -%>
+
+# Verbose logging options
+<%if $timekeeper::verbose_tcpdump != undef { -%>
+VERBOSE_TCPDUMP='<%= Numeric($timekeeper::verbose_tcpdump) -%>';
+<% } -%>
+<%if $timekeeper::verbose_ptp != undef { -%>
+VERBOSE_PTP='<%= Numeric($timekeeper::verbose_ptp) -%>';
+<% } -%>
+<%if $timekeeper::verbose_ntp != undef { -%>
+VERBOSE_NTP='<%= Numeric($timekeeper::verbose_ntp) -%>';
+<% } -%>
+<%if $timekeeper::verbose_server != undef { -%>
+VERBOSE_SERVER='<%= Numeric($timekeeper::verbose_server) -%>';
+<% } -%>
+<%if $timekeeper::verbose_sourcecheck != undef { -%>
+VERBOSE_SOURCECHECK='<%= Numeric($timekeeper::verbose_sourcecheck) -%>';
+<% } -%>
+<%if $timekeeper::verbose_socket != undef { -%>
+VERBOSE_SOCKET='<%= Numeric($timekeeper::verbose_socket) -%>';
+<% } -%>
+<%if $timekeeper::verbose_timestamps != undef { -%>
+VERBOSE_TIMESTAMPS='<%= Numeric($timekeeper::verbose_timestamps) -%>';
+<% } -%>
+<%if $timekeeper::verbose_nmea != undef { -%>
+VERBOSE_NMEA='<%= Numeric($timekeeper::verbose_nmea) -%>';
+<% } -%>
+<%if $timekeeper::verbose_pps != undef { -%>
+VERBOSE_PPS='<%= Numeric($timekeeper::verbose_pps) -%>';
+<% } -%>
+<%if $timekeeper::verbose_management != undef { -%>
+VERBOSE_MANAGEMENT='<%= Numeric($timekeeper::management) -%>';
+<% } -%>
+<%if $timekeeper::verbose_map != undef { -%>
+VERBOSE_MAP='<%= Numeric($timekeeper::verbose_map) -%>';
+<% } -%>
+<%if $timekeeper::verbose_bmc != undef { -%>
+VERBOSE_BMC='<%= Numeric($timekeeper::verbose_bmc) -%>';
+<% } -%>
+<%if $timekeeper::verbose_compliance != undef { -%>
+VERBOSE_COMPLIANCE='<%= Numeric($timekeeper::verbose_compiance) -%>';
+<% } -%>

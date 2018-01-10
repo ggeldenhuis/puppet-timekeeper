@@ -23,12 +23,12 @@
 SOURCE<%= $priority -%> () {
   LOWQUALITY='<%= Numeric($lowquality) -%>';
 <% if $syncerrorthreshold != undef { -%>
-  SYNCERRORTHRESHOLD='<%= $syncerrorthreshold -%>';
+  SYNCERRORTHRESHOLD='<%= String($syncerrorthreshold,'%#.6f')  -%>';
 <% } -%>
   ENABLE_CORRECTION='<%= Numeric($enable_correction) -%>';
   ALLOW_DROPPED_FOLLOWUP='<%= Numeric($allow_dropped_followup) -%>';
 <% if $cabledelay != undef { -%>
-  CABLEDELAY='<%= $cabledelay -%>';
+  CABLEDELAY='<%= String($cabledelay,'%#.6f') -%>';
 <% } -%>
   ENABLE_DETECT_ASYMMETRY='<%= Numeric($enable_detect_asymmetry) -%>';
   PTPDOMAIN='<%= $ptpdomain -%>';

@@ -7,19 +7,18 @@
 # @example
 #   timekeeper::component::source::ntp { 'namevar': }
 define timekeeper::component::source::ntp(
-  String               $ntpserver,
-  Integer              $priority,
-  Boolean              $lowquality = false,              # Set by default in Web UI
-  Boolean              $enable_reresolve = false,        # Set by default in Web UI
-  Boolean              $enable_detect_asymmetry = false, # Set by default in Web UI
-  Boolean              $enable_hwtstamps = true,         # Set by default in Web UI
-  Boolean              $monitoronly = false,             # Set by default in Web UI
-  Optional[Float]      $myfloat = undef,
-  Optional[Float]      $syncerrorthreshold = undef,
-  Optional[Float]      $cabledelay = undef,
-  Optional[Float]      $ntpsyncrate = undef,
-  Optional[String]     $ntpkeyid = undef,
-  Optional[Integer[1]] $majortime = undef,
+  Optional[Stdlib::Compat::Ip_address] $ntpserver,
+  Integer                              $priority,
+  Boolean                              $lowquality = false,              # Set by default in Web UI
+  Boolean                              $enable_reresolve = false,        # Set by default in Web UI
+  Boolean                              $enable_detect_asymmetry = false, # Set by default in Web UI
+  Boolean                              $enable_hwtstamps = true,         # Set by default in Web UI
+  Boolean                              $monitoronly = false,             # Set by default in Web UI
+  Optional[Float]                      $syncerrorthreshold = undef,
+  Optional[Float]                      $cabledelay = undef,
+  Optional[Float]                      $ntpsyncrate = undef,
+  Optional[String]                     $ntpkeyid = undef,
+  Optional[Integer[1]]                 $majortime = undef,
 ) {
   include timekeeper
   concat::fragment { "timekeeper::component::source::ntp::${priority}":

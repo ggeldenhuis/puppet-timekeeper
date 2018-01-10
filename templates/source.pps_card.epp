@@ -17,10 +17,10 @@ SOURCE<%= $priority -%> () {
   TKPPS='<%= Numeric($tkpps)-%>';
   MONITORONLY='<%= Numeric($monitoronly)-%>';
 <% if $syncerrorthreshold != undef { -%>
-  SYNCERRORTHRESHOLD='<%= $syncerrorthreshold -%>';
+  SYNCERRORTHRESHOLD='<%= String($syncerrorthreshold,'%#.6f') -%>';
 <% } -%>
 <% if $cabledelay != undef { -%>
-  CABLEDELAY='<%= $cabledelay -%>';
+  CABLEDELAY='<%= String($cabledelay,'%#.6f') -%>';
 <% } -%>
 <% if $holdover_limit != undef { -%>
   HOLDOVER_LIMIT='<%= $holdover_limit -%>';

@@ -7,25 +7,25 @@
 # @example
 #   timekeeper::component::source::ptp { 'namevar': }
 define timekeeper::component::source::ptp(
-  Integer           $priority,
-  Boolean           $lowquality = false,               # Set by default in Web UI
-  Boolean           $enable_correction = true,         # Set by default in Web UI
-  Boolean           $allow_dropped_followup = true,    # Set by default in Web UI
-  Boolean           $enable_detect_asymmetry = false,  # Set by default in Web UI
-  Integer           $ptpdomain = 0,                    # Set by default in Web UI
-  Integer[1,2]      $ptpclientversion = 2,             # Set by default in Web UI
-  Integer           $unicast = 0,                      # Set by default in Web UI
-  Boolean           $enable_hwtstamps = true,          # Set by default in Web UI
-  Boolean           $monitoronly = false,              # Set by default in Web UI
-  Boolean           $allow_unreasonable_utc = false,   # Set by default in Web UI
-  Optional[Float]   $syncerrorthreshold = undef,
-  Optional[Float]   $cabledelay = undef,
-  Optional[String]  $iface = undef,
-  Optional[Integer] $majortime = undef,
-  Optional[String]  $ptpserver = undef,
-  Optional[Integer] $ttl = undef,
-  Optional[Integer] $iptos = undef,
-  Optional[Boolean] $verify_interface_name = true,
+  Integer                               $priority,
+  Boolean                               $lowquality = false,               # Set by default in Web UI
+  Boolean                               $enable_correction = true,         # Set by default in Web UI
+  Boolean                               $allow_dropped_followup = true,    # Set by default in Web UI
+  Boolean                               $enable_detect_asymmetry = false,  # Set by default in Web UI
+  Integer                               $ptpdomain = 0,                    # Set by default in Web UI
+  Integer[1,2]                          $ptpclientversion = 2,             # Set by default in Web UI
+  Integer                               $unicast = 0,                      # Set by default in Web UI
+  Boolean                               $enable_hwtstamps = true,          # Set by default in Web UI
+  Boolean                               $monitoronly = false,              # Set by default in Web UI
+  Boolean                               $allow_unreasonable_utc = false,   # Set by default in Web UI
+  Optional[Float]                       $syncerrorthreshold = undef,
+  Optional[Float]                       $cabledelay = undef,
+  Optional[String]                      $iface = undef,
+  Optional[Integer]                     $majortime = undef,
+  Optional[Stdlib::Compat::Ip_address]  $ptpserver = undef,
+  Optional[Integer]                     $ttl = undef,
+  Optional[Integer]                     $iptos = undef,
+  Optional[Boolean]                     $verify_interface_name = true,
 
 ) {
   include timekeeper

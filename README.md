@@ -43,8 +43,8 @@ If there's more that they should know about, though, this is the place to mentio
 
 ### Setup Requirements **OPTIONAL**
 
-If your module requires anything extra before setting up (pluginsync enabled, another module, etc.), mention it here. 
-  
+If your module requires anything extra before setting up (pluginsync enabled, another module, etc.), mention it here.
+
 If your most recent release breaks compatibility or requires particular steps for upgrading, you might want to include an additional "Upgrading" section here.
 
 ### Beginning with timekeeper  
@@ -54,6 +54,8 @@ The very basic steps needed for a user to get the module up and running. This ca
 ## Usage
 
 This section is where you describe how to customize, configure, and do the fancy stuff with your module here. It's especially helpful if you include usage examples and code samples for doing things with your module.
+
+* Majortime must be within range of the max priority value of the sources
 
 ## Reference
 
@@ -78,4 +80,4 @@ Since your module is awesome, other users will want to play with it. Let them kn
 
 ## Release Notes/Contributors/Etc. **Optional**
 
-If you aren't using changelog, put your release notes here (though you should consider using changelog). You can also add any additional sections you feel are necessary or important to include here. Please use the `## ` header. 
+If you aren't using changelog, put your release notes here (though you should consider using changelog). You can also add any additional sections you feel are necessary or important to include here. Please use the `## ` header.

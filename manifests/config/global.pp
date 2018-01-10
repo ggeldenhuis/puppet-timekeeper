@@ -9,10 +9,10 @@
 class timekeeper::config::global {
   concat::fragment { 'timekeeper::config::global::about':
     target  => $timekeeper::config_file,
-    content => ("# This file is managed by puppet.\n"),
+    content => ("# This file is managed by puppet.\n\n"),
     order   => '01',
   }
-  
+
   concat::fragment { 'timekeeper::config::global' :
     target  => $timekeeper::config_file,
     content => epp('timekeeper/timekeeper.conf.epp'),

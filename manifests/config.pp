@@ -14,4 +14,6 @@ class timekeeper::config {
   include timekeeper::config::sources_ptp
   include timekeeper::config::sources_pps_bus
   include timekeeper::config::sources_pps_card
+  include timekeeper::config::servers_ptp
+  include timekeeper::config::compliance_reports
 }

@@ -1,0 +1,15 @@
+<%- | Integer       $priority,
+      String        $report_title,
+      Array[String] $clientset,
+      Float         $warningthreshold,
+      Float         $alerthreshold,
+| -%>
+<%# This template creates the config for readability, the web UI for    -%>
+<%# timekeeper places all config on one line, but is able to parse this -%>
+<%# config. The web config will write it back to one line though. -%>
+COMPLIANCEREPORT<%= $priority -%> () {
+  TITLE='<%= $report_title -%>';
+  CLIENTSET='<%= $clientset.join(',') -%>';
+  WARNINGTHRESHOLD='<%= String($warningthreshold,'%#.6f') -%>';
+  ALERTTHRESHOLD='<%= String($alerthreshold,'%#.6f') -%>';
+}

@@ -24,12 +24,12 @@
 <%# config. The web config will write it back to one line though. -%>
 SOURCE<%= $priority -%> () {
 <% if $syncerrorthreshold != undef { -%>
-  SYNCERRORTHRESHOLD='<%= $syncerrorthreshold-%>';
+  SYNCERRORTHRESHOLD='<%= String($syncerrorthreshold,'%#.6f') -%>';
 <% } -%>
   LOWQUALITY='<%= Numeric($lowquality) -%>';
   DISABLE_GPS='<%= Numeric($disable_gps) -%>';
 <% if $cabledelay != undef { -%>
-  CABLEDELAY='<%= $cabledelay -%>';
+  CABLEDELAY='<%= String($cabledelay,'%#.6f') -%>';
 <% } -%>
 <% if $ppssource != undef { -%>
   PPSSOURCE='<%= $ppssource -%>';

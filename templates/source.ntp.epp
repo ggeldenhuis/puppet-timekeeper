@@ -22,13 +22,13 @@ SOURCE<%= $priority -%> () {
   ENABLE_HWTSTAMPS='<%= Numeric($enable_hwtstamps) -%>';
   MONITORONLY='<%= Numeric($monitoronly) -%>';
 <% if $syncerrorthreshold != undef { -%>
-  SYNCERRORTHRESHOLD='<%= $syncerrorthreshold-%>';
+  SYNCERRORTHRESHOLD='<%= String($syncerrorthreshold,'%#.6f') -%>';
 <% } -%>
 <% if $cabledelay != undef { -%>
-  CABLEDELAY='<%= $cabledelay -%>';
+  CABLEDELAY='<%= String($cabledelay,'%#.6f') -%>';
 <% } -%>
 <% if $ntpsyncrate != undef { -%>
-  NTPSYNCRATE='<%= $ntpsyncrate -%>';
+  NTPSYNCRATE='<%= String($ntpsyncrate,'%#.6f') -%>';
 <% } -%>
 <% if $ntpkeyid != undef { -%>
   NTPKEYID='<%= $ntpkeyid -%>';

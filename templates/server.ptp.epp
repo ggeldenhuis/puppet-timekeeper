@@ -1,0 +1,42 @@
+<%- | Integer           $priority,
+      Integer           $ptpserverversion,
+      Integer           $ptpserverdomain,
+      Integer           $ptppriority1,
+      Integer           $ptppriority2,
+      Boolean           $unicast,
+      Optional[Float]   $syncerrorthreshold,
+      Optional[Integer] $ptpserversyncrate,
+      Optional[Integer] $ptpserverttl,
+      Optional[String]  $iface,
+      Optional[Integer] $iptos,
+      Optional[Integer] $minclockaccuracy,
+| -%>
+<%# This template creates the config for readability, the web UI for    -%>
+<%# timekeeper places all config on one line, but is able to parse this -%>
+<%# config. The web config will write it back to one line though. -%>
+
+SERVEPTP<%= $priority -%> () {
+<% if $syncerrorthreshold != undef { -%>
+  SYNCERRORTHRESHOLD='<%= String($syncerrorthreshold,'%#.6f') -%>';
+<% } -%>
+  PTPSERVERVERSION='<%= $ptpserverversion -%>';
+  PTPSERVERDOMAIN='<%= $ptpserverdomain -%>';
+<% if $ptpserversyncrate != undef { -%>
+  PTPSERVERSYNCRATE='<%= $ptpserversyncrate -%>';
+<% } -%>
+<% if $ptpserverttl != undef { -%>
+  PTPSERVERTTL='<%= $ptpserverttl -%>';
+<% } -%>
+  PTPPRIORITY1='<%= $ptppriority1 -%>';
+  PTPPRIORITY2='<%= $ptppriority2 -%>';
+<% if $iface != undef { -%>
+  IFACE='<%= $iface -%>';
+<% } -%>
+  UNICAST='<%= Numeric($unicast) -%>';
+<% if $iptos != undef { -%>
+  IPTOS='<%= $iptos -%>';
+<% } -%>
+<% if $minclockaccuracy != undef { -%>
+  MINCLOCKACCURACY='<%= $minclockaccuracy -%>';
+<% } -%>
+}
